@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -13,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class App {
+    static int curScenario = 0;
     public static void main(String[] args) {
         JFrame frame = new JFrame("Swing Layout Example");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -21,20 +23,64 @@ public class App {
         // Use BorderLayout
         frame.setLayout(new BorderLayout());
 
-        JLabel text = new JLabel("You are given a new project in CP3.", SwingConstants.CENTER);
+        JTextArea text = new JTextArea("Would you rather eat a bowl of worms or break a bone?");
         frame.add(text, BorderLayout.CENTER);
 
         // Create panel for buttons at bottom
         JPanel buttonPanel = new JPanel(new BorderLayout());
 
-        JButton leftButton = new JButton("Start today ");
-        JButton rightButton = new JButton("Wait till thte day its due");
+        JButton leftButton = new JButton("Break a Bone");
+        JButton rightButton = new JButton("Bowl of Insects");
 
         leftButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                text.setText("YOUR SCENARIO HERE");
-                leftButton.setText("YOUR NEW OPTION 1 HERE");
-                rightButton.setText("YOUR NEW OPTION 2 HERE");
+                if(curScenario ==0){
+                text.setText("What bone would you rather break?");
+                leftButton.setText("Leg");
+                rightButton.setText("Dominant arm");
+                curScenario = 2;
+                }else if (curScenario == 1){  
+                    text.setText("You just ate live worms!");
+                    leftButton.setText("Leg");
+                    rightButton.setText("Dominant arm");
+
+                    
+                }else if (curScenario == 2){//user chose to break leg  
+                    text.setText("You just broke your leg, would you rather!");
+                    leftButton.setText("kick a soccer ball");
+                    rightButton.setText("Do 10 jumping jacks");
+
+                    
+                }
+            }  
+        });
+
+        //JPanel buttonPanel = new JPanel(new BorderLayout());
+
+        //JButton leftButton = new JButton("Live Worms");
+        //JButton rightButton = new JButton("Dead cockroaches"); 
+
+        rightButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(curScenario == 0){
+                text.setText("Which bowl of insects would you rather eat");
+                leftButton.setText("Live Worms");
+                rightButton.setText("dead cockroaches");
+                curScenario = 1;
+                } else if (curScenario == 1){ //cockroaches  
+                    text.setText("Which drink would you choose to eat the insects with?"); 
+                    leftButton.setText("Trach juice");
+                    rightButton.setText("Toilet water");
+
+
+
+                }else if (curScenario == 2){//user chose to break dominant arm  
+                    text.setText("You just broke your arm, which finger would you like broken?");
+                    leftButton.setText(" Thumb");
+                    rightButton.setText("middle finger");
+
+                    
+                }
             }
         });
 
@@ -46,4 +92,5 @@ public class App {
         // Show frame
         frame.setVisible(true);
     }
-}
+} 
+
